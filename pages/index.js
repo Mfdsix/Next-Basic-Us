@@ -1,31 +1,37 @@
 import Link from 'next/link'
 
+const anchors = [
+  {
+    type: 'mammal',
+    name: 'elephant'
+  },
+  {
+    type: 'mammal',
+    name: 'panda'
+  },
+  {
+    type: 'reptile',
+    name: 'snake'
+  },
+  {
+    type: 'reptile',
+    name: 'crocodile'
+  },
+]
+
 function Index(){
   return(
   <div>
     <h3>Hello, this is is my index page</h3>
     <p>you can use below navigations as example</p>
     <ul>
+      { anchors.map(e => (
       <li>
-        <Link as="/animal/mammal/elephant" href="/animal/[type]/[name]">
-        <a>Mammal - Elephant</a>
+        <Link as={`/animal/${e.type}/${e.name}`} href="/animal/[type]/[name]">
+        <a>{e.type} - {e.name}</a>
         </Link>
       </li>
-      <li>
-        <Link as="/animal/mammal/panda" href="/animal/[type]/[name]">
-        <a>Mammal - Panda</a>
-        </Link>
-      </li>
-      <li>
-        <Link as="/animal/reptile/snake" href="/animal/[type]/[name]">
-        <a>Mammal - Snake</a>
-        </Link>
-      </li>
-      <li>
-        <Link as="/animal/reptile/crocodile" href="/animal/[type]/[name]">
-        <a>Mammal - Crocodile</a>
-        </Link>
-      </li>
+      ))}
     </ul>
   </div>
   )
